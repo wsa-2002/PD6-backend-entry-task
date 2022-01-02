@@ -1,0 +1,5 @@
+fastapi==0.63.0  # version fixed due to complete re-overriding fastapi objects
+uvicorn
+asyncpg
+databases~=0.4.3
+python-dotenv~=0.18.0

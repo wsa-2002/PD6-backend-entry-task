@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  database:
+    container_name: test_postgresql_database
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: test_db
+      POSTGRES_USER: test_user
+      POSTGRES_PASSWORD: test_password
+    ports:
+      - 5432:5432
+    volumes:
+      # Since postgresql will save data in /var/lib/postgresql/data,
+      #   mount a local folder to let pg save data files in it
+      - ./db-data:/var/lib/postgresql/data
+      # All .sql files under /docker-entrypoint-initdb.d will be executed
+      #   on initialization of /var/lib/postgresql/data
+      - ./schema:/docker-entrypoint-initdb.d
